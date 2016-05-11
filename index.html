@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Psychic Game</title>
+    <!-- Reset CSS -->
+    <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
+    <!-- Added a link to Bootstrap-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+</head>
+
+<body>
+    <!-- Header and instructions. -->
+    <h1 style="font-size: 3em;">The Psychic Game</h1>
+    <br>
+    <p>Guess what letter I'm thinking of.</p>
+    <p class="winsResult">Wins: </p>
+    <p class="lossResult">Losses: </p>
+    <p class="guessesLeft">Guesses left: </p>
+    <p class="guessesSoFar">Your guesses so far: </p>
+    <script type="text/javascript">
+
+    // Setting the wins and losses variables
+    var wins = 0;
+    var losses = 0;
+
+    //Sets the computer choices
+    var computerChoices = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+
+    // Create the on click event that gets the user's pick
+    document.onkeyup = function(event) {
+
+        var guessesLeft = 9;
+
+        // Create variable that starts game over if won or guessesLeft reaches 0
+        var startOver = false;
+
+        //When the user presses a key, it records the keypress and then sets it to userGuess.
+        var userGuess = String.fromCharCode(event.keycode).toLowerCase();
+
+        // This sets the computer guess equal to the random.
+        var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+        // If the userGuess is the same as the computerGuess
+        if (userGuess == computerGuess) {
+            wins++;
+            startOver();
+        }
+        // else losses number goes up, and guessesLeft goes down. 
+        else {
+            losses++;
+            guessesLeft = guessesLeft--;
+            for (i = 9; i = 0; i--) {
+                startOver;
+            }
+        }
+
+        //Taking the tallies and displaying them in HTML.
+        var html = "<p>Wins: " + wins + "</p>" +
+            "<p>Losses: " + losses + "</p>" +
+            "<p>Guesses Left: " + guessesLeft + "</p>" +
+            "<p>Guesses So Far: " + userGuess + "</p>";
+
+        console.log("Computer Guess: " + computerGuess);
+        console.log("Wins: " + wins);
+        console.log("Losses: " + losses);
+        console.log("Guesses Left: " + guessesLeft);
+        console.log("\n");
+    }
+    </script>
+</body>
+
+</html>
